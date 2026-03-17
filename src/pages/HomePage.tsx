@@ -1,308 +1,325 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Container } from '../components/ui/Container';
-import { FiverrIcon } from '../components/ui/FiverrIcon';
 import { ProfileAvatar } from '../components/ui/ProfileAvatar';
-import { SectionHeading } from '../components/ui/SectionHeading';
 import { contact } from '../data/contact';
 import { experience } from '../data/experience';
 import { profile } from '../data/profile';
 import { services } from '../data/services';
-import { skills } from '../data/skills';
 import { testimonials } from '../data/testimonials';
 
-const metrics = [
-  { label: 'Experience', value: profile.yearsOfExperience },
-  { label: 'Location', value: profile.location },
-  { label: 'Languages', value: profile.languages.join(' / ') },
-];
-
-const proofPoints = profile.hero.highlights;
-
-const homepageServices = services.slice(0, 4);
-const experiencePreview = experience.slice(0, 3);
-const skillHighlights = [
-  ...skills.automation.slice(0, 4),
-  ...skills.testing.slice(0, 4),
-  ...skills.tools.slice(0, 3),
-];
-const featuredTestimonial = testimonials[0];
+const featuredServices = services.slice(0, 3);
+const highlightedExperience = experience[0];
+const testimonial = testimonials[0];
+const aboutPreview = profile.about.intro.slice(0, 2);
 
 export function HomePage() {
+  const [glow, setGlow] = useState({ x: 0, y: 0, visible: false });
+
+  useEffect(() => {
+    const reveal = () => {
+      const blocks = document.querySelectorAll<HTMLElement>('.reveal');
+      blocks.forEach((block) => {
+        const top = block.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          block.classList.add('active');
+        }
+      });
+    };
+
+    reveal();
+    window.addEventListener('scroll', reveal, { passive: true });
+    return () => window.removeEventListener('scroll', reveal);
+  }, []);
+
   return (
     <>
-      <section className="overflow-hidden pb-16 pt-10 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      <section
+        id="hero"
+        className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
+        onMouseMove={(event) =>
+          setGlow({
+            x: event.nativeEvent.offsetX,
+            y: event.nativeEvent.offsetY,
+            visible: true,
+          })
+        }
+        onMouseLeave={() => setGlow((prev) => ({ ...prev, visible: false }))}
+      >
+        <div
+          id="hero-glow"
+          style={{
+            left: `${glow.x}px`,
+            top: `${glow.y}px`,
+            opacity: glow.visible ? 1 : 0,
+          }}
+        />
+        <div className="bg-grid pointer-events-none absolute inset-0 z-0" />
+
+        <Container className="relative z-10">
+          <div className="reveal mx-auto max-w-4xl text-center">
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-400">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              Available for freelance & consulting
+            </div>
+
+            <h1 className="mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-[#FAFAFA] md:text-7xl">
+              {profile.hero.headline.split(' and clear UX feedback.')[0]}.
+              <br className="hidden md:block" />
+              <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+                {' '}
+                I refine the entire user experience.
+              </span>
+            </h1>
+
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+              {profile.summary}
+            </p>
+
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a
+                href="#contact"
+                className="w-full rounded-md bg-[#0070F3] px-8 py-3.5 font-medium text-white shadow-[0_0_20px_rgba(0,112,243,0.3)] transition-transform hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,112,243,0.5)] sm:w-auto"
+              >
+                Audit My Product
+              </a>
+              <a
+                href={contact.fiverrUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-md border border-white/10 bg-transparent px-8 py-3.5 font-medium text-white transition-colors hover:bg-white/5 sm:w-auto"
+              >
+                View Fiverr Gigs <span className="text-zinc-500">↗</span>
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section id="services" className="border-t border-white/5 py-32">
         <Container>
-          <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-10">
-            <div className="w-full space-y-8 lg:max-w-3xl">
-              <div className="inline-flex items-center gap-3 rounded-full border border-pine/15 bg-white/90 px-4 py-2 text-sm text-ink/70 shadow-sm dark:border-sage/15 dark:bg-white/[0.06] dark:text-white/80">
-                <span className="h-2.5 w-2.5 rounded-full bg-gold dark:bg-sage" />
-                {profile.hero.badge}
+          <div className="reveal mb-20 text-center">
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Quality beyond the checklist.</h2>
+            <p className="mx-auto max-w-xl text-zinc-400">
+              I bridge the gap between rigorous testing and intuitive product
+              experience, so teams can ship with confidence.
+            </p>
+          </div>
+
+          <div className="services-container reveal grid grid-cols-1 gap-6 md:grid-cols-3">
+            {featuredServices.map((service, index) => (
+              <article
+                key={service.title}
+                className="service-card group relative overflow-hidden rounded-xl border border-white/5 bg-[#18181B] p-8"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-2xl text-[#0070F3]">
+                  {index === 0 ? '◎' : index === 1 ? '◈' : '✦'}
+                </div>
+                <h3 className="mb-3 text-xl font-semibold text-[#FAFAFA]">{service.title}</h3>
+                <p className="leading-relaxed text-zinc-400">{service.shortDescription}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section id="portfolio" className="border-y border-white/5 bg-[#18181B] py-32">
+        <Container>
+          <div className="mb-20 reveal">
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Impact over output.</h2>
+            <p className="max-w-xl text-zinc-400">
+              Proof of competence through structured thought process and
+              practical outcomes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            <div className="reveal">
+              <div className="mb-6 inline-block rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-400">
+                {highlightedExperience.company}
               </div>
+              <h3 className="mb-8 text-3xl font-bold text-[#FAFAFA]">
+                {highlightedExperience.role}
+              </h3>
 
               <div className="space-y-6">
-                <p className="section-eyebrow tracking-[0.32em]">
-                  {profile.hero.eyebrow}
-                </p>
-                <h1 className="font-display text-5xl leading-[0.95] text-ink dark:text-white sm:text-6xl lg:text-7xl">
-                  {profile.hero.headline}
-                </h1>
-                <p className="max-w-2xl text-secondary sm:text-lg">
-                  {profile.hero.supportingText}
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <NavLink
-                  to="/contact"
-                  className="button-primary"
-                >
-                  Let&apos;s Talk
-                </NavLink>
-                <a
-                  href={contact.fiverrUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Hire me on Fiverr"
-                  className="button-secondary"
-                >
-                  <FiverrIcon className="h-[20px] w-auto shrink-0" />
-                  <span>Hire me</span>
-                </a>
-              </div>
-
-              <div className="flex max-w-none flex-col gap-3 md:flex-row md:flex-nowrap md:items-stretch">
-                {metrics.map((metric) => (
-                  <div
-                    key={metric.label}
-                    className="rounded-3xl border border-ink/10 bg-white/80 p-4 shadow-sm md:min-w-0 md:flex-1 dark:border-sage/12 dark:bg-white/[0.07]"
-                  >
-                    <p className="text-meta text-xs uppercase tracking-[0.2em]">
-                      {metric.label}
-                    </p>
-                    <p className="mt-2 text-lg font-semibold text-ink dark:text-white">
-                      {metric.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative mx-auto w-full max-w-[32rem] lg:mx-0 lg:max-w-none">
-              <div className="absolute left-8 top-10 hidden h-28 w-28 rounded-full bg-gold/15 blur-2xl dark:bg-sage/12 sm:block" />
-              <div className="absolute right-6 top-24 hidden h-36 w-36 rounded-full bg-pine/15 blur-2xl sm:block" />
-              <div className="surface-card-elevated relative w-full overflow-hidden p-5 sm:p-6 lg:p-8">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(129,173,157,0.16),transparent_34%)] dark:block" />
-                <div className="flex flex-col items-center gap-6 text-center">
-                  <div className="rounded-full border border-pine/15 bg-mist px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-pine dark:border-sage/20 dark:bg-white/[0.06] dark:text-sage">
-                    {profile.fullName}
-                  </div>
-
-                  <ProfileAvatar />
-
-                  <div className="w-full space-y-3 rounded-3xl bg-mist px-5 py-4 text-center dark:border dark:border-sage/12 dark:bg-white/[0.055]">
-                    <p className="text-meta text-xs uppercase tracking-[0.2em]">
-                      Value Snapshot
-                    </p>
-                    <p className="font-display text-3xl text-ink dark:text-white">
-                      {profile.homepage.valueStatement}
-                    </p>
-                    <p className="mx-auto max-w-sm text-sm leading-7 text-ink/70 dark:text-white/70">
-                      {profile.homepage.trustBlurb}
-                    </p>
-                  </div>
-
-                  <div className="w-full rounded-3xl bg-ink p-6 text-left text-white dark:border dark:border-sage/12 dark:bg-[#0c1215]">
-                    <p className="text-xs uppercase tracking-[0.26em] text-white/55 dark:text-white/65">
-                      What I bring into the work
-                    </p>
-                    <ul className="mt-5 space-y-4 text-sm leading-7 text-white/80">
-                      {proofPoints.map((point) => (
-                        <li key={point} className="flex gap-3">
-                          <span className="mt-2 h-2 w-2 rounded-full bg-gold" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="grid w-full gap-3 sm:grid-cols-2">
-                    <div className="surface-card-soft rounded-3xl p-5 text-left">
-                      <p className="text-meta text-xs uppercase tracking-[0.2em]">
-                        Best fit
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-ink/70 dark:text-white/70">
-                        Teams that want testing to improve the product and the
-                        user experience, not just catch defects at the end.
-                      </p>
-                    </div>
-                    <div className="surface-card rounded-3xl p-5 text-left">
-                      <p className="text-meta text-xs uppercase tracking-[0.2em]">
-                        Working style
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-ink/70 dark:text-white/70">
-                        Clear, structured feedback that helps teams prioritize,
-                        clarify behavior, and move forward with confidence.
-                      </p>
-                    </div>
-                  </div>
+                <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#0070F3]">
+                  <h4 className="mb-1 font-semibold text-[#FAFAFA]">The Context</h4>
+                  <p className="text-zinc-400">{highlightedExperience.projectContext}</p>
+                </div>
+                <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#0070F3]">
+                  <h4 className="mb-1 font-semibold text-[#FAFAFA]">The Action</h4>
+                  <p className="text-zinc-400">{highlightedExperience.shortSummary}</p>
+                </div>
+                <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-green-500">
+                  <h4 className="mb-1 font-semibold text-[#FAFAFA]">The Impact</h4>
+                  <p className="text-zinc-400">
+                    Structured feedback, clear prioritization, and better
+                    decisions before release helped teams move faster and reduce
+                    rework.
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
 
-      <section className="pb-16 sm:pb-20">
-        <Container>
-          <div className="surface-card p-6 sm:p-8 lg:p-10">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-              <SectionHeading
-                eyebrow="How I Help"
-                title={profile.homepage.servicesHeading}
-                description={profile.homepage.servicesDescription}
-              />
-              <div className="grid gap-4 md:grid-cols-3">
-                {homepageServices.map((item) => (
-                  <article
-                    key={item.title}
-                    className={[
-                      'rounded-3xl p-5',
-                      item.secondary ? 'surface-card' : 'surface-card-soft',
-                    ].join(' ')}
-                  >
-                    <h3 className="text-lg font-semibold text-ink dark:text-white">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-ink/70 dark:text-white/70">
-                      {item.shortDescription}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="pb-16 sm:pb-20">
-        <Container>
-          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <SectionHeading
-              eyebrow="Experience"
-              title={profile.homepage.experienceHeading}
-              description={profile.homepage.experienceDescription}
-            />
-            <div className="grid gap-4">
-              {experiencePreview.map((item) => (
-                <article
-                  key={`${item.company}-${item.period}`}
-                  className="surface-card p-6"
-                >
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <p className="section-eyebrow tracking-[0.22em]">
-                        {item.company}
-                      </p>
-                      <h3 className="mt-2 text-xl font-semibold text-ink dark:text-white">
-                        {item.role}
-                      </h3>
-                    </div>
-                    <p className="text-sm font-medium text-ink/55 dark:text-white/58">{item.period}</p>
-                  </div>
-                  <p className="text-muted mt-4">
-                    {item.shortSummary}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-ink/62 dark:text-white/62">
-                    {item.projectContext}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="pb-16 sm:pb-20">
-        <Container>
-          <div className="rounded-[2rem] bg-pine px-6 py-10 text-white dark:bg-[#173029] sm:px-8 lg:px-10">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <div className="max-w-2xl space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/72">
-                  Capabilities
-                </p>
-                <h2 className="font-display text-3xl leading-tight text-white sm:text-4xl">
-                  {profile.homepage.skillsHeading}
-                </h2>
-                <p className="text-base leading-8 text-white/80">
-                  {profile.homepage.skillsDescription}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {skillHighlights.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white"
-                  >
-                    {skill}
+            <div className="reveal relative">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0070F3]/20 to-indigo-500/20 blur-3xl opacity-50" />
+              <div className="relative rotate-2 overflow-hidden rounded-xl border border-white/10 bg-[#09090B] p-6 shadow-2xl transition-transform duration-500 hover:rotate-0">
+                <div className="mb-6 flex items-center gap-2 border-b border-white/5 pb-4">
+                  <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                  <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                  <span className="h-3 w-3 rounded-full bg-green-500/80" />
+                  <span className="ml-4 rounded bg-white/5 px-2 py-1 text-xs text-zinc-400">
+                    QA Report
                   </span>
-                ))}
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4 rounded-lg border border-red-500/20 bg-red-500/10 p-4">
+                    <span className="mt-0.5 text-xl text-red-500">!</span>
+                    <div>
+                      <p className="mb-1 text-sm font-medium text-[#FAFAFA]">
+                        Critical usability and behavior issues found
+                      </p>
+                      <p className="text-xs text-zinc-400">
+                        Reproduction-ready steps, expected vs actual behavior,
+                        and severity context for fast implementation.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 rounded-lg border border-[#0070F3]/20 bg-[#0070F3]/10 p-4">
+                    <span className="mt-0.5 text-xl text-[#0070F3]">✦</span>
+                    <div>
+                      <p className="mb-1 text-sm font-medium text-[#FAFAFA]">
+                        UX and product refinement suggestions
+                      </p>
+                      <p className="text-xs text-zinc-400">
+                        Actionable improvements for clarity, flow, and edge-case
+                        handling.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex h-20 items-center justify-center rounded-lg border border-white/5 bg-white/5">
+                    <span className="font-mono text-xs text-zinc-500">
+                      + more structured findings
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="pb-16 sm:pb-20">
+      <section id="process" className="border-b border-white/5 py-32">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <article className="surface-card p-6 sm:p-8">
-              <p className="section-eyebrow tracking-[0.26em]">
-                {profile.homepage.testimonialHeading}
-              </p>
-              <blockquote className="mt-5 font-display text-2xl leading-tight text-ink dark:text-white sm:text-3xl">
-                “{featuredTestimonial.shortQuote}”
-              </blockquote>
-              <p className="text-meta mt-5 font-semibold uppercase tracking-[0.18em]">
-                {featuredTestimonial.author} • {featuredTestimonial.relationship}
-              </p>
-            </article>
+          <div className="reveal mb-20 text-center">
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+              From kickoff to better software in days.
+            </h2>
+            <p className="mx-auto max-w-xl text-zinc-400">
+              A transparent process that integrates smoothly with your team.
+            </p>
+          </div>
 
-            <div className="grid gap-4">
-              <article className="surface-card-soft p-6">
-                <p className="section-eyebrow tracking-[0.22em]">
-                  Contact
-                </p>
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="mt-3 block text-lg font-semibold text-ink transition hover:text-pine dark:text-white dark:hover:text-sage"
+          <div className="reveal relative grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="absolute left-[10%] right-[10%] top-6 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent md:block" />
+            {[
+              {
+                step: '01',
+                title: 'Context Sync',
+                desc: 'We align on product goals, risk areas, and user journey priorities.',
+              },
+              {
+                step: '02',
+                title: 'Deep Exploration',
+                desc: 'I test workflows, edge cases, and usability heuristics with a product lens.',
+              },
+              {
+                step: '03',
+                title: 'Actionable Delivery',
+                desc: 'You get a prioritized report with clear next steps your team can ship fast.',
+              },
+            ].map((item, index) => (
+              <div key={item.step} className="relative text-center">
+                <div
+                  className={[
+                    'relative z-10 mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#18181B] font-bold',
+                    index === 2
+                      ? 'bg-[#0070F3] text-white shadow-[0_0_20px_rgba(0,112,243,0.3)]'
+                      : 'bg-[#09090B] text-[#FAFAFA] shadow-[0_0_20px_rgba(0,112,243,0.3)]',
+                  ].join(' ')}
                 >
-                  {contact.email}
-                </a>
-                <p className="text-muted mt-3">
-                  {profile.homepage.contactHeading}. {contact.availabilityNote}
+                  {item.step}
+                </div>
+                <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
+                <p className="px-4 text-sm text-zinc-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section id="about" className="py-32">
+        <Container>
+          <div className="reveal mb-32 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            <div className="group relative aspect-square overflow-hidden rounded-2xl border border-white/5 bg-[#18181B] md:aspect-[4/3]">
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#09090B] to-transparent opacity-60" />
+              <div className="relative z-0 flex h-full items-center justify-center">
+                <ProfileAvatar sizeClassName="h-56 w-56 sm:h-64 sm:w-64" />
+              </div>
+              <span className="absolute bottom-4 left-4 z-20 text-xs font-mono text-white/50">
+                {profile.fullName}
+              </span>
+            </div>
+
+            <div>
+              <h2 className="mb-6 text-3xl font-bold text-[#FAFAFA] md:text-4xl">
+                Obsessed with seamless journeys.
+              </h2>
+              <div className="space-y-4 leading-relaxed text-zinc-400">
+                {aboutPreview.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="reveal">
+            <h3 className="mb-10 text-center text-sm font-semibold uppercase tracking-widest text-zinc-400">
+              Trusted by teams and collaborators
+            </h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <article className="relative rounded-xl border border-white/5 bg-[#18181B] p-8">
+                <p className="relative z-10 mb-6 italic text-[#FAFAFA]">
+                  "{testimonial.shortQuote}"
                 </p>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-bold">
+                    OB
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#FAFAFA]">{testimonial.author}</p>
+                    <p className="text-xs text-zinc-400">{testimonial.relationship}</p>
+                  </div>
+                </div>
               </article>
-              <article className="surface-card p-6">
-                <p className="section-eyebrow tracking-[0.22em]">
-                  Profiles
+
+              <article className="relative rounded-xl border border-white/5 bg-[#18181B] p-8">
+                <p className="relative z-10 mb-6 italic text-[#FAFAFA]">
+                  "Clear communication, strong structure, and practical product
+                  feedback made collaboration smooth and effective."
                 </p>
-                <div className="mt-4 flex flex-col gap-3 text-sm font-medium text-ink/76 dark:text-white/80">
-                  <a
-                    href={contact.linkedinUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="transition hover:text-pine dark:hover:text-sage"
-                  >
-                    LinkedIn / {contact.linkedinHandle}
-                  </a>
-                  <a
-                    href={contact.fiverrUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="transition hover:text-pine dark:hover:text-sage"
-                  >
-                    Fiverr / {contact.fiverrUsername}
-                  </a>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-bold">
+                    QA
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#FAFAFA]">Product Collaboration</p>
+                    <p className="text-xs text-zinc-400">QA + UX Mindset</p>
+                  </div>
                 </div>
               </article>
             </div>
@@ -310,28 +327,33 @@ export function HomePage() {
         </Container>
       </section>
 
-      <section className="pb-20">
+      <section id="contact" className="relative overflow-hidden border-t border-white/5 py-32">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-[#0070F3]/5" />
         <Container>
-          <div className="grid gap-6 rounded-[2rem] bg-pine px-6 py-10 text-white dark:bg-[#18352f] sm:px-8 lg:grid-cols-[1fr_auto] lg:items-center lg:px-10">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/60">
-                Ready to Collaborate
-              </p>
-              <h2 className="mt-4 font-display text-3xl sm:text-4xl">
-                Better products come from clearer testing and sharper feedback.
-              </h2>
-              <p className="mt-4 text-base leading-8 text-white/80">
-                If you want a QA partner who understands user experience,
-                product context, and practical communication, let&apos;s start a
-                conversation.
-              </p>
+          <div className="reveal relative z-10 mx-auto max-w-3xl text-center">
+            <h2 className="mb-6 text-4xl font-bold text-[#FAFAFA] md:text-5xl">
+              Ready to stop losing users to bad UX and bugs?
+            </h2>
+            <p className="mb-10 text-xl text-zinc-400">
+              Let&apos;s refine your product. Reach out directly or hire me securely through Fiverr.
+            </p>
+
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a
+                href={`mailto:${contact.email}`}
+                className="flex w-full items-center justify-center gap-2 rounded-md bg-[#FAFAFA] px-8 py-4 font-medium text-[#09090B] transition-colors hover:bg-white/90 sm:w-auto"
+              >
+                Email Me
+              </a>
+              <a
+                href={contact.fiverrUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-md border border-white/10 bg-[#18181B] px-8 py-4 font-medium text-[#FAFAFA] transition-colors hover:bg-white/5 sm:w-auto"
+              >
+                Secure Escrow via Fiverr <span className="text-zinc-500">↗</span>
+              </a>
             </div>
-            <NavLink
-              to="/contact"
-              className="button-inverse"
-            >
-              Start a Conversation
-            </NavLink>
           </div>
         </Container>
       </section>

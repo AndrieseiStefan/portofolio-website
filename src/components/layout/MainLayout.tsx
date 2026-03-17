@@ -1,17 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { ReactNode } from 'react';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { ScrollToTop } from './ScrollToTop';
 
-export function MainLayout() {
+export function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-sand text-ink dark:bg-[#0d1416] dark:text-[#e8efe9]">
+    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA]">
       <ScrollToTop />
-      <div className="absolute inset-x-0 top-0 -z-10 h-[32rem] bg-hero-glow dark:bg-hero-glow-dark" />
       <Header />
-      <main className="relative z-0">
-        <Outlet />
-      </main>
+      <main className="relative z-0">{children}</main>
       <Footer />
     </div>
   );

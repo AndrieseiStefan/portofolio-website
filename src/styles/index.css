@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color: #0d1b1e;
-  background: #f7f1e8;
+  color: #fafafa;
+  background: #09090b;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,8 +14,8 @@
 }
 
 :root.dark {
-  color: #e8efe9;
-  background: #0d1416;
+  color: #fafafa;
+  background: #09090b;
 }
 
 html {
@@ -25,20 +25,17 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    radial-gradient(circle at top left, rgba(197, 141, 68, 0.08), transparent 35%),
-    linear-gradient(180deg, #f7f1e8 0%, #fbf8f2 22%, #ffffff 100%);
-  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  background: #09090b;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   color: inherit;
   transition:
     background-color 220ms ease,
     color 220ms ease;
+  overflow-x: hidden;
 }
 
 .dark body {
-  background:
-    radial-gradient(circle at top left, rgba(197, 141, 68, 0.07), transparent 32%),
-    linear-gradient(180deg, #0d1416 0%, #10191c 28%, #152126 100%);
+  background: #09090b;
 }
 
 *,
@@ -61,6 +58,58 @@ img {
   isolation: isolate;
 }
 
+#hero {
+  position: relative;
+}
+
+#hero-glow {
+  position: absolute;
+  height: 600px;
+  width: 600px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(9, 9, 11, 0) 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: 0;
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, transparent 10%, black 50%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 50%, transparent 90%);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-container:hover .service-card {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.services-container .service-card:hover {
+  opacity: 1;
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.service-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @layer components {
   .page-shell {
     @apply pb-20 pt-12 sm:pb-24 sm:pt-14;
@@ -71,45 +120,46 @@ img {
   }
 
   .section-eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.28em] text-pine dark:text-sage;
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-zinc-400;
   }
 
   .section-title {
-    @apply font-display text-3xl leading-tight text-ink dark:text-white sm:text-4xl;
+    @apply font-display text-3xl leading-tight text-white sm:text-4xl;
   }
 
   .page-title {
-    @apply font-display text-4xl leading-tight text-ink dark:text-white sm:text-5xl lg:text-6xl;
+    @apply font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl;
   }
 
   .text-primary {
-    @apply text-ink dark:text-white;
+    @apply text-white;
   }
 
   .text-secondary {
     @apply text-base leading-8;
-    color: rgb(13 27 30 / 0.72);
+    color: rgb(161 161 170 / 1);
   }
 
   .text-muted {
     @apply text-sm leading-7;
-    color: rgb(13 27 30 / 0.7);
+    color: rgb(161 161 170 / 1);
   }
 
   .text-meta {
     @apply text-sm;
-    color: rgb(13 27 30 / 0.55);
+    color: rgb(161 161 170 / 0.9);
   }
 
   .surface-card {
     @apply rounded-[2rem] border shadow-panel;
-    border-color: rgb(13 27 30 / 0.1);
-    background-color: rgb(255 255 255 / 0.85);
+    border-color: rgb(255 255 255 / 0.08);
+    background-color: #18181b;
   }
 
   .surface-card-soft {
-    @apply rounded-[2rem] border bg-sand;
-    border-color: rgb(13 27 30 / 0.1);
+    @apply rounded-[2rem] border;
+    border-color: rgb(255 255 255 / 0.06);
+    background-color: #18181b;
   }
 
   .surface-card-elevated {
@@ -128,16 +178,16 @@ img {
   }
 
   .button-primary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-pine px-6 text-sm font-semibold text-white transition hover:bg-ink;
+    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-[#0070F3] px-6 text-sm font-semibold text-white transition hover:bg-[#005bb5];
   }
 
   .button-secondary {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border bg-white px-6 text-sm font-semibold text-ink transition hover:border-pine hover:text-pine hover:shadow-sm;
-    border-color: rgb(13 27 30 / 0.12);
+    @apply inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-md border bg-transparent px-6 text-sm font-semibold text-white transition hover:bg-white/5;
+    border-color: rgb(255 255 255 / 0.1);
   }
 
   .button-inverse {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-pine transition hover:bg-sand;
+    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-white px-6 text-sm font-semibold text-[#09090B] transition hover:bg-white/90;
   }
 
   .panel-divider {
@@ -170,96 +220,7 @@ img {
   }
 
   .dark .text-secondary {
-    color: rgb(255 255 255 / 0.78);
-  }
-
-  .dark .text-muted {
-    color: rgb(255 255 255 / 0.72);
-  }
-
-  .dark .text-meta {
-    color: rgb(255 255 255 / 0.6);
-  }
-
-  .dark .pill-chip {
-    border-color: rgb(201 217 207 / 0.14);
-    background-color: #182126;
-    color: rgb(255 255 255 / 0.78);
-  }
-
-  .dark .surface-card {
-    border-color: rgb(201 217 207 / 0.14);
-    background-color: rgb(255 255 255 / 0.07);
-  }
-
-  .dark .surface-card-soft {
-    border-color: rgb(201 217 207 / 0.14);
-    background-color: #182126;
-  }
-
-  .dark .surface-card-elevated {
-    border-color: rgb(201 217 207 / 0.14);
-    background: linear-gradient(180deg, rgba(25, 36, 41, 0.98), rgba(16, 24, 28, 0.96));
-    box-shadow: 0 28px 100px rgba(0, 0, 0, 0.42);
-  }
-
-  .dark .surface-brand {
-    background-color: #173029;
-  }
-
-  .dark .button-primary {
-    background-color: #18352f;
-  }
-
-  .dark .button-primary:hover {
-    background-color: #214a43;
-  }
-
-  .dark .button-secondary {
-    border-color: rgb(201 217 207 / 0.14);
-    background-color: rgb(255 255 255 / 0.05);
-    color: #fff;
-  }
-
-  .dark .button-secondary:hover {
-    border-color: #c9d9cf;
-    color: #c9d9cf;
-  }
-
-  .dark .button-inverse {
-    background-color: #0f171a;
-    color: #fff;
-  }
-
-  .dark .button-inverse:hover {
-    background-color: #172327;
-  }
-
-  .dark .panel-divider {
-    border-color: rgb(201 217 207 / 0.14);
-  }
-
-  .dark .header-shell {
-    border-color: rgb(201 217 207 / 0.16);
-    background-color: rgb(8 16 20 / 0.95);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34);
-  }
-
-  .dark .footer-shell {
-    border-color: rgb(201 217 207 / 0.18);
-    background-color: #060d10;
-  }
-
-  .dark .footer-heading {
-    color: rgb(255 255 255 / 0.84);
-  }
-
-  .dark .footer-copy {
-    color: rgb(255 255 255 / 0.78);
-  }
-
-  .dark .footer-meta {
-    color: rgb(255 255 255 / 0.6);
+    color: rgb(161 161 170 / 1);
   }
 }
 
