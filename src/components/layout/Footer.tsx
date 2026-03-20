@@ -30,7 +30,6 @@ export function Footer() {
             </a>
           </div>
         </div>
-        <p className="mt-3 text-center text-xs italic text-zinc-500">Cheers, Explorer In Motion</p>
       </Container>
     </footer>
   );

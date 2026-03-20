@@ -17,7 +17,7 @@ export const profile = {
     headline:
       'Better user experiences start with better testing, sharper product thinking, and clear UX feedback.',
     supportingText:
-      'With 8+ years across web and mobile products, I work at the intersection of testing, UX feedback, and product thinking to help teams ship experiences that feel clearer, smoother, and more reliable for real users.',
+      'With 8+ years across web and mobile products, I help teams build clearer, smoother, and more reliable experiences through testing, UX feedback, and product thinking.',
     badge: 'QA with product context',
     highlights: [
       'UX-aware testing',
