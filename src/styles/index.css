@@ -111,6 +111,51 @@ img {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  min-width: 15ch;
+}
+
+.brand-text {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.brand-suffix {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.48);
+  transition:
+    max-width 560ms steps(8, end),
+    border-color 140ms ease;
+  will-change: max-width, border-color;
+  animation: brand-caret-blink 1.45s steps(1, end) infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand-link:hover .brand-suffix,
+  .brand-link:focus-visible .brand-suffix {
+    max-width: 8ch;
+    border-right-color: rgba(255, 255, 255, 0.62);
+  }
+}
+
+@keyframes brand-caret-blink {
+  0%,
+  45% {
+    border-right-color: rgba(255, 255, 255, 0.5);
+  }
+
+  46%,
+  100% {
+    border-right-color: rgba(255, 255, 255, 0);
+  }
+}
+
 .portfolio-carousel-container {
   position: relative;
   overflow: hidden;

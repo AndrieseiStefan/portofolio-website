@@ -36,9 +36,15 @@ export function Header() {
           <a
             href="#hero"
             onClick={handleSectionClick}
-            className="font-semibold tracking-tight text-white"
+            className="brand-link font-semibold tracking-tight text-white"
+            aria-label={profile.fullName}
           >
-            {profile.displayName}
+            <span className="brand-text">
+              <span>Stefan A</span>
+              <span className="brand-suffix" aria-hidden="true">
+                ndriesei
+              </span>
+            </span>
           </a>
 
           <nav className="hidden items-center gap-8 text-sm text-zinc-400 md:flex">
