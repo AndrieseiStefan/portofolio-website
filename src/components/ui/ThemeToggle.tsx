@@ -27,37 +27,37 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
       aria-label="Toggle dark mode"
       aria-pressed={isDark}
       className={[
-        'group relative inline-flex items-center rounded-full border border-ink/10 bg-white/80 p-1 text-ink shadow-sm backdrop-blur-md transition hover:border-pine/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-sage/15 dark:bg-white/[0.06] dark:text-white dark:hover:border-sage/35 dark:hover:bg-white/[0.08] dark:focus-visible:ring-offset-[#0d1416]',
-        compact ? 'h-11 w-[84px]' : 'h-11 w-[84px]',
+        'group relative inline-flex items-center rounded-full border border-ink/10 bg-white/80 p-1 text-ink shadow-sm backdrop-blur-md transition hover:border-[#0070F3]/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/[0.06] dark:text-white dark:hover:border-[#0070F3]/45 dark:hover:bg-white/[0.08] dark:focus-visible:ring-offset-[#0d1416]',
+        compact ? 'h-10 w-[84px]' : 'h-10 w-[84px]',
       ].join(' ')}
     >
       <span className="absolute inset-[3px] rounded-full bg-black/[0.02] dark:bg-white/[0.03]" />
-      <span className="absolute inset-1">
+      <span className="absolute inset-[4px]">
         <span
           className={[
-            'absolute inset-y-0 left-0 w-1/2 p-[2px] transition-transform duration-300 ease-out',
-            isDark ? 'translate-x-full' : 'translate-x-0',
+            'absolute inset-y-0 left-0 w-[33px] transition-transform duration-300 ease-out',
+            isDark ? 'translate-x-[39px]' : 'translate-x-[1px]',
           ].join(' ')}
         >
-          <span className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-pine to-[#173d36] shadow-[0_8px_22px_rgba(13,27,30,0.24)] dark:from-sage dark:to-[#77a698]" />
+          <span className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-[#0070F3] to-[#2f83ff] shadow-[0_8px_22px_rgba(0,112,243,0.32)]" />
         </span>
       </span>
       <span className="relative z-10 grid w-full grid-cols-2 items-center">
         <span
           className={[
-            'inline-flex h-9 w-full items-center justify-center transition',
+            'inline-flex h-8 w-full items-center justify-center transition',
             isDark ? 'text-ink/55 dark:text-white/65' : 'text-white',
           ].join(' ')}
         >
-          <SunIcon className="h-4 w-4" />
+          <SunIcon className="h-[15px] w-[15px]" />
         </span>
         <span
           className={[
-            'inline-flex h-9 w-full items-center justify-center transition',
+            'inline-flex h-8 w-full items-center justify-center transition',
             isDark ? 'text-white' : 'text-ink/55 dark:text-white/65',
           ].join(' ')}
         >
-          <MoonIcon className="h-4 w-4" />
+          <MoonIcon className="h-[15px] w-[15px]" />
         </span>
       </span>
     </button>

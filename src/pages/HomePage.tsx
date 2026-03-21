@@ -160,7 +160,7 @@ export function HomePage() {
     <>
       <section
         id="hero"
-        className="scroll-mt-16 relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
+        className="scroll-mt-16 relative flex min-h-screen items-center justify-center overflow-hidden bg-sand pt-20 dark:bg-[#09090B]"
         onMouseEnter={updateGlow}
         onMouseMove={updateGlow}
         onMouseLeave={hideGlow}
@@ -170,7 +170,7 @@ export function HomePage() {
 
         <Container className="relative z-10">
           <div className="reveal mx-auto max-w-4xl text-center">
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-400">
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/70 px-3 py-1 text-xs font-medium text-ink/60 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -178,15 +178,15 @@ export function HomePage() {
               Available for freelance & consulting
             </div>
 
-            <h1 className="mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-[#FAFAFA] md:text-7xl">
+            <h1 className="mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-ink dark:text-[#FAFAFA] md:text-7xl">
               Better user experiences start with better testing, sharper product thinking,
               <br className="hidden md:block" />
-              <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-ink to-ink/50 bg-clip-text text-transparent dark:from-white dark:to-zinc-400">
                 {' '}and clear UX feedback.
               </span>
             </h1>
 
-            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-ink/65 dark:text-zinc-400 md:text-xl">
               {profile.hero.supportingText}
             </p>
 
@@ -201,20 +201,20 @@ export function HomePage() {
                 href={contact.fiverrUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-md border border-white/10 bg-transparent px-8 py-3.5 font-medium text-white transition-colors hover:bg-white/5 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-md border border-ink/10 bg-white/60 px-8 py-3.5 font-medium text-ink transition-colors hover:bg-white sm:w-auto dark:border-white/10 dark:bg-transparent dark:text-white dark:hover:bg-white/5"
               >
-                View Fiverr Gigs <span className="text-zinc-500">↗</span>
+                View Fiverr Gigs <span className="text-ink/35 dark:text-zinc-500">↗</span>
               </a>
             </div>
           </div>
         </Container>
       </section>
 
-      <section id="services" className="scroll-mt-16 border-t border-white/5 py-32">
+      <section id="services" className="scroll-mt-16 border-t border-ink/10 py-32 dark:border-white/5">
         <Container>
           <div className="reveal mb-20 text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Quality beyond the checklist.</h2>
-            <p className="mx-auto max-w-xl text-zinc-400">
+            <p className="mx-auto max-w-xl text-ink/65 dark:text-zinc-400">
               I bridge the gap between rigorous testing and intuitive product
               experience, so teams can ship with confidence.
             </p>
@@ -224,26 +224,26 @@ export function HomePage() {
             {featuredServices.map((service, index) => (
               <article
                 key={service.title}
-                className="service-card group relative overflow-hidden rounded-xl border border-white/5 bg-[#18181B] p-8"
+                className="service-card group relative overflow-hidden rounded-xl border border-ink/10 bg-white/70 p-8 dark:border-white/5 dark:bg-[#18181B]"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-2xl text-[#0070F3]">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-ink/10 bg-white text-2xl text-[#0070F3] dark:border-white/10 dark:bg-white/5">
                   {index === 0 ? '◎' : index === 1 ? '◈' : '✦'}
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-[#FAFAFA]">{service.title}</h3>
-                <p className="leading-relaxed text-zinc-400">{service.shortDescription}</p>
+                <h3 className="mb-3 text-xl font-semibold text-ink dark:text-[#FAFAFA]">{service.title}</h3>
+                <p className="leading-relaxed text-ink/65 dark:text-zinc-400">{service.shortDescription}</p>
               </article>
             ))}
           </div>
 
           <div className="reveal relative mx-auto mt-16 max-w-3xl">
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0070F3]/20 to-indigo-500/20 blur-3xl opacity-50" />
-            <div className="relative rotate-2 overflow-hidden rounded-xl border border-white/10 bg-[#09090B] p-6 shadow-2xl transition-transform duration-500 hover:rotate-0">
-              <div className="mb-6 flex items-center gap-2 border-b border-white/5 pb-4">
+            <div className="relative rotate-2 overflow-hidden rounded-xl border border-ink/10 bg-white/85 p-6 shadow-2xl transition-transform duration-500 hover:rotate-0 dark:border-white/10 dark:bg-[#09090B]">
+              <div className="mb-6 flex items-center gap-2 border-b border-ink/10 pb-4 dark:border-white/5">
                 <span className="h-3 w-3 rounded-full bg-red-500/80" />
                 <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
                 <span className="h-3 w-3 rounded-full bg-green-500/80" />
-                <span className="ml-4 rounded bg-white/5 px-2 py-1 text-xs text-zinc-400">
+                <span className="ml-4 rounded bg-ink/5 px-2 py-1 text-xs text-ink/55 dark:bg-white/5 dark:text-zinc-400">
                   QA Report
                 </span>
               </div>
@@ -251,10 +251,10 @@ export function HomePage() {
                 <div className="flex items-start gap-4 rounded-lg border border-red-500/20 bg-red-500/10 p-4">
                   <span className="mt-0.5 text-xl text-red-500">!</span>
                   <div>
-                    <p className="mb-1 text-sm font-medium text-[#FAFAFA]">
+                      <p className="mb-1 text-sm font-medium text-ink dark:text-[#FAFAFA]">
                       Critical usability and behavior issues found
                     </p>
-                    <p className="text-xs text-zinc-400">
+                      <p className="text-xs text-ink/55 dark:text-zinc-400">
                       Reproduction-ready steps, expected vs actual behavior,
                       and severity context for fast implementation.
                     </p>
@@ -263,17 +263,17 @@ export function HomePage() {
                 <div className="flex items-start gap-4 rounded-lg border border-[#0070F3]/20 bg-[#0070F3]/10 p-4">
                   <span className="mt-0.5 text-xl text-[#0070F3]">✦</span>
                   <div>
-                    <p className="mb-1 text-sm font-medium text-[#FAFAFA]">
+                      <p className="mb-1 text-sm font-medium text-ink dark:text-[#FAFAFA]">
                       UX and product refinement suggestions
                     </p>
-                    <p className="text-xs text-zinc-400">
+                      <p className="text-xs text-ink/55 dark:text-zinc-400">
                       Actionable improvements for clarity, flow, and edge-case
                       handling.
                     </p>
                   </div>
                 </div>
-                <div className="flex h-20 items-center justify-center rounded-lg border border-white/5 bg-white/5">
-                  <span className="font-mono text-xs text-zinc-500">
+                <div className="flex h-20 items-center justify-center rounded-lg border border-ink/10 bg-ink/[0.03] dark:border-white/5 dark:bg-white/5">
+                  <span className="font-mono text-xs text-ink/35 dark:text-zinc-500">
                     + more structured findings
                   </span>
                 </div>
@@ -283,11 +283,11 @@ export function HomePage() {
         </Container>
       </section>
 
-      <section id="portfolio" className="scroll-mt-16 border-y border-white/5 bg-[#18181B] py-32">
+      <section id="portfolio" className="scroll-mt-16 border-y border-ink/10 bg-white/35 py-32 dark:border-white/5 dark:bg-[#18181B]">
         <Container>
           <div className="mb-20 reveal text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Impact over output.</h2>
-            <p className="mx-auto max-w-xl text-zinc-400">
+            <p className="mx-auto max-w-xl text-ink/65 dark:text-zinc-400">
               Proof of competence through structured thought process and
               practical outcomes.
             </p>
@@ -299,7 +299,7 @@ export function HomePage() {
                 <button
                   type="button"
                   onClick={goToPreviousCase}
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-lg text-white transition-colors hover:bg-white/10"
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/10 bg-white/75 text-lg text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                   aria-label="Previous portfolio case"
                 >
                   ←
@@ -307,7 +307,7 @@ export function HomePage() {
                 <button
                   type="button"
                   onClick={goToNextCase}
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-lg text-white transition-colors hover:bg-white/10"
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/10 bg-white/75 text-lg text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                   aria-label="Next portfolio case"
                 >
                   →
@@ -315,7 +315,7 @@ export function HomePage() {
               </div>
             </div>
 
-            <div className="portfolio-carousel-container rounded-[1.75rem] border border-white/10 bg-[#101013] shadow-2xl">
+            <div className="portfolio-carousel-container rounded-[1.75rem] border border-ink/10 bg-white/80 shadow-2xl dark:border-white/10 dark:bg-[#101013]">
               <div
                 className="portfolio-carousel-track"
                 style={{ transform: `translateX(-${activeCaseIndex * 100}%)` }}
@@ -334,16 +334,16 @@ export function HomePage() {
                           className={[
                             'inline-flex rounded-full border px-3 py-1 text-xs font-medium',
                             item.accent === 'blue'
-                              ? 'border-[#0070F3]/20 bg-[#0070F3]/10 text-[#8dc0ff]'
-                              : 'border-violet-400/20 bg-violet-400/10 text-violet-200',
+                              ? 'border-[#0070F3]/20 bg-[#0070F3]/10 text-[#0053b3] dark:text-[#8dc0ff]'
+                              : 'border-violet-400/20 bg-violet-400/10 text-violet-700 dark:text-violet-200',
                           ].join(' ')}
                         >
                           {item.category}
                         </p>
-                        <h3 className="max-w-xl text-3xl font-bold text-[#FAFAFA] sm:text-4xl">
+                        <h3 className="max-w-xl text-3xl font-bold text-ink dark:text-[#FAFAFA] sm:text-4xl">
                           {item.title}
                         </h3>
-                        <div className="max-w-xl space-y-4 text-base leading-8 text-zinc-400">
+                        <div className="max-w-xl space-y-4 text-base leading-8 text-ink/65 dark:text-zinc-400">
                           {item.description.split('\n\n').map((paragraph) => (
                             <p key={paragraph}>{paragraph}</p>
                           ))}
@@ -370,7 +370,7 @@ export function HomePage() {
                     'h-2.5 rounded-full transition-all',
                     index === activeCaseIndex
                       ? 'w-8 bg-[#0070F3]'
-                      : 'w-2.5 bg-white/20 hover:bg-white/40',
+                      : 'w-2.5 bg-ink/20 hover:bg-ink/35 dark:bg-white/20 dark:hover:bg-white/40',
                   ].join(' ')}
                 />
               ))}
@@ -379,19 +379,19 @@ export function HomePage() {
         </Container>
       </section>
 
-      <section id="process" className="scroll-mt-16 border-b border-white/5 py-32">
+      <section id="process" className="scroll-mt-16 border-b border-ink/10 py-32 dark:border-white/5">
         <Container>
           <div className="reveal mb-20 text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
               From kickoff to better software in days.
             </h2>
-            <p className="mx-auto max-w-xl text-zinc-400">
+            <p className="mx-auto max-w-xl text-ink/65 dark:text-zinc-400">
               A transparent process that integrates smoothly with your team.
             </p>
           </div>
 
           <div className="reveal relative grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="absolute left-[10%] right-[10%] top-6 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent md:block" />
+            <div className="absolute left-[10%] right-[10%] top-6 hidden h-px bg-gradient-to-r from-transparent via-ink/15 to-transparent dark:via-white/10 md:block" />
             {[
               {
                 step: '01',
@@ -415,37 +415,40 @@ export function HomePage() {
                     'relative z-10 mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#18181B] font-bold',
                     index === 2
                       ? 'bg-[#0070F3] text-white shadow-[0_0_20px_rgba(0,112,243,0.3)]'
-                      : 'bg-[#09090B] text-[#FAFAFA] shadow-[0_0_20px_rgba(0,112,243,0.3)]',
+                      : 'bg-white text-ink shadow-[0_0_20px_rgba(0,112,243,0.12)] dark:bg-[#09090B] dark:text-[#FAFAFA] dark:shadow-[0_0_20px_rgba(0,112,243,0.3)]',
                   ].join(' ')}
                 >
                   {item.step}
                 </div>
                 <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
-                <p className="px-4 text-sm text-zinc-400">{item.desc}</p>
+                <p className="px-4 text-sm text-ink/65 dark:text-zinc-400">{item.desc}</p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      <section id="about" className="scroll-mt-16 py-32">
+      <section
+        id="about"
+        className="scroll-mt-16 border-t border-ink/10 bg-white/45 py-32 dark:border-white/5 dark:bg-[#101013]"
+      >
         <Container>
           <div className="reveal mb-32 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            <div className="group relative aspect-square overflow-hidden rounded-2xl border border-white/5 bg-[#18181B] md:aspect-[4/3]">
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#09090B] to-transparent opacity-60" />
+            <div className="group relative aspect-square overflow-hidden rounded-2xl border border-ink/10 bg-white/70 dark:border-white/5 dark:bg-[#18181B] md:aspect-[4/3]">
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-sand/60 to-transparent opacity-70 dark:from-[#09090B] dark:opacity-60" />
               <div className="relative z-0 flex h-full items-center justify-center">
                 <ProfileAvatar sizeClassName="h-56 w-56 sm:h-64 sm:w-64" />
               </div>
-              <span className="absolute bottom-4 left-4 z-20 text-xs font-mono text-white/50">
+              <span className="absolute bottom-4 left-4 z-20 text-xs font-mono text-ink/45 dark:text-white/50">
                 {profile.fullName}
               </span>
             </div>
 
             <div>
-              <h2 className="mb-6 text-3xl font-bold text-[#FAFAFA] md:text-4xl">
+              <h2 className="mb-6 text-3xl font-bold text-ink dark:text-[#FAFAFA] md:text-4xl">
                 Obsessed with seamless journeys.
               </h2>
-              <div className="max-w-2xl space-y-5 leading-relaxed text-zinc-400">
+              <div className="max-w-2xl space-y-5 leading-relaxed text-ink/65 dark:text-zinc-400">
                 {aboutNarrative.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -454,37 +457,37 @@ export function HomePage() {
           </div>
 
           <div className="reveal">
-            <h3 className="mb-10 text-center text-sm font-semibold uppercase tracking-widest text-zinc-400">
+            <h3 className="mb-10 text-center text-sm font-semibold uppercase tracking-widest text-ink/50 dark:text-zinc-400">
               Trusted by teams and collaborators
             </h3>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <article className="relative rounded-xl border border-white/5 bg-[#18181B] p-8">
-                <p className="relative z-10 mb-6 italic text-[#FAFAFA]">
+              <article className="relative rounded-xl border border-ink/10 bg-white/70 p-8 dark:border-white/5 dark:bg-[#18181B]">
+                <p className="relative z-10 mb-6 italic text-ink dark:text-[#FAFAFA]">
                   "{testimonial.shortQuote}"
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-bold">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/8 text-xs font-bold dark:bg-white/10">
                     OB
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#FAFAFA]">{testimonial.author}</p>
-                    <p className="text-xs text-zinc-400">{testimonial.relationship}</p>
+                    <p className="text-sm font-bold text-ink dark:text-[#FAFAFA]">{testimonial.author}</p>
+                    <p className="text-xs text-ink/55 dark:text-zinc-400">{testimonial.relationship}</p>
                   </div>
                 </div>
               </article>
 
-              <article className="relative rounded-xl border border-white/5 bg-[#18181B] p-8">
-                <p className="relative z-10 mb-6 italic text-[#FAFAFA]">
+              <article className="relative rounded-xl border border-ink/10 bg-white/70 p-8 dark:border-white/5 dark:bg-[#18181B]">
+                <p className="relative z-10 mb-6 italic text-ink dark:text-[#FAFAFA]">
                   "Clear communication, strong structure, and practical product
                   feedback made collaboration smooth and effective."
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-bold">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/8 text-xs font-bold dark:bg-white/10">
                     QA
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#FAFAFA]">Product Collaboration</p>
-                    <p className="text-xs text-zinc-400">QA + UX Mindset</p>
+                    <p className="text-sm font-bold text-ink dark:text-[#FAFAFA]">Product Collaboration</p>
+                    <p className="text-xs text-ink/55 dark:text-zinc-400">QA + UX Mindset</p>
                   </div>
                 </div>
               </article>
@@ -493,21 +496,21 @@ export function HomePage() {
         </Container>
       </section>
 
-      <section id="contact" className="scroll-mt-16 relative overflow-hidden border-t border-white/5 py-32">
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-[#0070F3]/5" />
+      <section id="contact" className="scroll-mt-16 relative overflow-hidden border-t border-ink/10 py-32 dark:border-white/5">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-[#0070F3]/5 dark:to-[#0070F3]/5" />
         <Container>
           <div className="reveal relative z-10 mx-auto max-w-3xl text-center">
-            <h2 className="mb-6 text-4xl font-bold text-[#FAFAFA] md:text-5xl">
+            <h2 className="mb-6 text-4xl font-bold text-ink dark:text-[#FAFAFA] md:text-5xl">
               Ready to stop losing users to bad UX and bugs?
             </h2>
-            <p className="mb-10 text-xl text-zinc-400">
+            <p className="mb-10 text-xl text-ink/65 dark:text-zinc-400">
               Let&apos;s refine your product. Reach out directly or hire me securely through Fiverr.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 href={`mailto:${contact.email}`}
-                className="flex w-full items-center justify-center gap-2 rounded-md bg-[#FAFAFA] px-8 py-4 font-medium text-[#09090B] transition-colors hover:bg-white/90 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-md bg-ink px-8 py-4 font-medium text-white transition-colors hover:bg-ink/90 dark:bg-[#FAFAFA] dark:text-[#09090B] dark:hover:bg-white/90 sm:w-auto"
               >
                 Email Me
               </a>
@@ -515,9 +518,9 @@ export function HomePage() {
                 href={contact.fiverrUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-md border border-white/10 bg-[#18181B] px-8 py-4 font-medium text-[#FAFAFA] transition-colors hover:bg-white/5 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-md border border-ink/10 bg-white/70 px-8 py-4 font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-[#18181B] dark:text-[#FAFAFA] dark:hover:bg-white/5 sm:w-auto"
               >
-                Hire Me via Fiverr <span className="text-zinc-500">↗</span>
+                Hire Me via Fiverr <span className="text-ink/35 dark:text-zinc-500">↗</span>
               </a>
             </div>
           </div>
