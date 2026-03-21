@@ -401,12 +401,12 @@ export function HomePage() {
               {
                 step: '02',
                 title: 'Deep Exploration',
-                desc: 'I test workflows, edge cases, and usability heuristics with a product lens.',
+                desc: 'I test real user flows, edge cases, and identify usability issues that impact experience.',
               },
               {
                 step: '03',
                 title: 'Actionable Delivery',
-                desc: 'You get a prioritized report with clear next steps your team can ship fast.',
+                desc: 'You get a clear, prioritized report with exact issues and what to fix next.',
               },
             ].map((item, index) => (
               <div key={item.step} className="relative text-center">
