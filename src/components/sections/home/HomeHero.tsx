@@ -17,7 +17,7 @@ export function HomeHero({
   return (
     <section
       id="hero"
-      className="scroll-mt-16 relative flex min-h-screen items-center justify-center overflow-hidden bg-sand pt-20 dark:bg-[#09090B]"
+      className="scroll-mt-16 relative flex min-h-screen items-start justify-center overflow-hidden bg-sand pb-16 pt-28 md:items-center md:pb-0 md:pt-20 dark:bg-[#09090B]"
       onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
@@ -27,7 +27,7 @@ export function HomeHero({
 
       <Container className="relative z-10">
         <div className="reveal mx-auto max-w-4xl text-center">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/70 px-3 py-1 text-xs font-medium text-ink/60 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/12 bg-[#f7f1e8] px-3 py-1 text-xs font-medium text-ink/70 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -43,7 +43,7 @@ export function HomeHero({
             </span>
           </h1>
 
-          <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-ink/65 dark:text-zinc-400 md:text-xl">
+          <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-ink/72 dark:text-zinc-400 md:text-xl">
             {profile.hero.supportingText}
           </p>
 

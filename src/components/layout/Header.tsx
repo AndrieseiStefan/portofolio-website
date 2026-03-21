@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
 import { contact } from '../../data/contact';
 import { profile } from '../../data/profile';
@@ -11,6 +11,8 @@ export function Header() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const navItems = [
     { label: 'Services', href: '#services' },
@@ -32,6 +34,34 @@ export function Header() {
     return () => window.removeEventListener('resize', closeMenuOnDesktop);
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node | null;
+
+      if (!target) {
+        return;
+      }
+
+      if (mobileMenuRef.current?.contains(target)) {
+        return;
+      }
+
+      if (mobileMenuButtonRef.current?.contains(target)) {
+        return;
+      }
+
+      setIsMobileMenuOpen(false);
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
+  }, [isMobileMenuOpen]);
+
   const handleSectionClick = (event: MouseEvent<HTMLAnchorElement>) => {
     setIsMobileMenuOpen(false);
 
@@ -48,8 +78,10 @@ export function Header() {
 
     event.preventDefault();
 
-    const headerOffset = 64;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const headerOffset = window.innerWidth < 1024 ? 52 : 64;
+    const sectionContentOffset = window.innerWidth < 1024 ? 88 : 0;
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset + sectionContentOffset;
 
     window.history.replaceState(null, '', href);
     window.scrollTo({
@@ -62,7 +94,7 @@ export function Header() {
     <header
       className={[
         'site-header fixed inset-x-0 top-0 z-[100] border-b backdrop-blur-md',
-        isDark ? 'border-white/5 bg-[#09090B]' : 'border-ink/10 bg-sand',
+        isDark ? 'border-white/5 bg-[#09090B]' : 'border-ink/12 bg-[#f3ebdf]',
       ].join(' ')}
     >
       <Container className="h-16">
@@ -81,7 +113,7 @@ export function Header() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-6 text-sm text-ink/60 md:flex lg:gap-8 dark:text-zinc-400">
+          <nav className="hidden items-center gap-6 text-sm text-ink/75 md:flex lg:gap-8 dark:text-zinc-400">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -99,7 +131,7 @@ export function Header() {
             <a
               href="#contact"
               onClick={handleSectionClick}
-              className="hidden h-10 items-center rounded border border-ink/10 bg-white/70 px-4 text-sm font-medium text-ink transition-colors hover:bg-white md:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="hidden h-10 items-center rounded border border-ink/12 bg-[#f7f1e8] px-4 text-sm font-medium text-ink transition-colors hover:bg-white md:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               Let&apos;s Talk
             </a>
@@ -108,18 +140,19 @@ export function Header() {
               target="_blank"
               rel="noreferrer"
               aria-label="Hire me on Fiverr"
-              className="inline-flex h-10 items-center gap-2 rounded border border-ink/10 bg-white/70 px-3 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:hidden dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="inline-flex h-10 items-center gap-2 rounded border border-ink/12 bg-[#f7f1e8] px-3 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:hidden dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               <FiverrIcon className="h-4 w-auto shrink-0" />
               <span>Hire Me</span>
             </a>
             <button
+              ref={mobileMenuButtonRef}
               type="button"
               aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation"
               onClick={() => setIsMobileMenuOpen((open) => !open)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded border border-ink/10 bg-white/70 text-ink transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus-visible:ring-offset-[#09090B] md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded border border-ink/12 bg-[#f7f1e8] text-ink transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus-visible:ring-offset-[#09090B] md:hidden"
             >
               <span className="sr-only">
                 {isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -151,7 +184,8 @@ export function Header() {
         {isMobileMenuOpen ? (
           <div
             id="mobile-navigation"
-            className="absolute inset-x-4 top-[calc(100%+0.75rem)] rounded-2xl border border-ink/10 bg-sand p-4 shadow-[0_18px_48px_rgba(13,27,30,0.14)] dark:border-white/10 dark:bg-[#121316] md:hidden"
+            ref={mobileMenuRef}
+            className="absolute inset-x-4 top-[calc(100%+0.75rem)] rounded-2xl border border-ink/12 bg-[#f3ebdf] p-4 shadow-[0_18px_48px_rgba(13,27,30,0.14)] dark:border-white/10 dark:bg-[#121316] md:hidden"
           >
             <nav className="flex flex-col gap-1 text-sm text-ink dark:text-white">
               {navItems.map((item) => (
@@ -159,19 +193,19 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={handleSectionClick}
-                  className="rounded-xl px-3 py-3 font-medium transition-colors hover:bg-ink/[0.04] dark:hover:bg-white/5"
+                  className="rounded-xl px-3 py-3 font-medium transition-colors hover:bg-ink/[0.05] dark:hover:bg-white/5"
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
 
-            <div className="my-3 border-t border-ink/10 dark:border-white/10" />
+            <div className="my-3 border-t border-ink/12 dark:border-white/10" />
 
             <a
               href="#contact"
               onClick={handleSectionClick}
-              className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-ink/10 bg-white/80 px-4 text-sm font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-ink/12 bg-[#f7f1e8] px-4 text-sm font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               Let&apos;s Talk
             </a>
@@ -181,7 +215,7 @@ export function Header() {
               target="_blank"
               rel="noreferrer"
               aria-label="Hire me on Fiverr"
-              className="mt-2 hidden h-10 w-full items-center justify-center gap-2 rounded-xl border border-ink/10 bg-white/80 px-4 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="mt-2 hidden h-10 w-full items-center justify-center gap-2 rounded-xl border border-ink/12 bg-[#f7f1e8] px-4 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               <FiverrIcon className="h-4 w-auto shrink-0" />
               <span>Hire Me</span>
