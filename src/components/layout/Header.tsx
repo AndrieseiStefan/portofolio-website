@@ -98,7 +98,7 @@ export function Header() {
   return (
     <header
       className={[
-        'site-header fixed inset-x-0 top-0 z-[100] border-b backdrop-blur-md',
+        'site-header fixed inset-x-0 top-0 z-[100] border-b',
         isDark ? 'border-white/5 bg-[#09090B]' : 'border-ink/12 bg-[#f3ebdf]',
       ].join(' ')}
     >

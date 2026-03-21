@@ -23,9 +23,9 @@ export function HomeHero({
     event.preventDefault();
 
     window.history.replaceState(null, '', '#contact');
-    window.scrollTo({
-      top: Math.max(0, target.offsetTop),
+    target.scrollIntoView({
       behavior: 'smooth',
+      block: 'start',
     });
   };
 
