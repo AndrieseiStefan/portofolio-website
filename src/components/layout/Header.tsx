@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { MouseEvent } from 'react';
 import { contact } from '../../data/contact';
 import { profile } from '../../data/profile';
@@ -9,8 +10,31 @@ import { ThemeToggle } from '../ui/ThemeToggle';
 export function Header() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: 'Services', href: '#services' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Process', href: '#process' },
+    { label: 'About', href: '#about' },
+  ];
+
+  useEffect(() => {
+    const closeMenuOnDesktop = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    closeMenuOnDesktop();
+    window.addEventListener('resize', closeMenuOnDesktop);
+
+    return () => window.removeEventListener('resize', closeMenuOnDesktop);
+  }, []);
 
   const handleSectionClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    setIsMobileMenuOpen(false);
+
     const href = event.currentTarget.getAttribute('href');
 
     if (!href?.startsWith('#')) {
@@ -42,11 +66,11 @@ export function Header() {
       ].join(' ')}
     >
       <Container className="h-16">
-        <div className="flex h-full items-center justify-between">
+        <div className="flex h-full items-center justify-between gap-3 md:gap-6">
           <a
             href="#hero"
             onClick={handleSectionClick}
-            className="brand-link font-semibold tracking-tight text-ink dark:text-white"
+            className="brand-link shrink-0 font-semibold tracking-tight text-ink dark:text-white"
             aria-label={profile.fullName}
           >
             <span className="brand-text">
@@ -57,43 +81,25 @@ export function Header() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-8 text-sm text-ink/60 md:flex dark:text-zinc-400">
-            <a
-              href="#services"
-              onClick={handleSectionClick}
-              className="transition-colors hover:text-ink dark:hover:text-white"
-            >
-              Services
-            </a>
-            <a
-              href="#portfolio"
-              onClick={handleSectionClick}
-              className="transition-colors hover:text-ink dark:hover:text-white"
-            >
-              Portfolio
-            </a>
-            <a
-              href="#process"
-              onClick={handleSectionClick}
-              className="transition-colors hover:text-ink dark:hover:text-white"
-            >
-              Process
-            </a>
-            <a
-              href="#about"
-              onClick={handleSectionClick}
-              className="transition-colors hover:text-ink dark:hover:text-white"
-            >
-              About
-            </a>
+          <nav className="hidden items-center gap-6 text-sm text-ink/60 md:flex lg:gap-8 dark:text-zinc-400">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={handleSectionClick}
+                className="transition-colors hover:text-ink dark:hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <ThemeToggle compact />
             <a
               href="#contact"
               onClick={handleSectionClick}
-              className="hidden rounded border border-ink/10 bg-white/70 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-white sm:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="hidden h-10 items-center rounded border border-ink/10 bg-white/70 px-4 text-sm font-medium text-ink transition-colors hover:bg-white md:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               Let&apos;s Talk
             </a>
@@ -102,13 +108,86 @@ export function Header() {
               target="_blank"
               rel="noreferrer"
               aria-label="Hire me on Fiverr"
-              className="inline-flex items-center gap-2 rounded border border-ink/10 bg-white/70 px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="inline-flex h-10 items-center gap-2 rounded border border-ink/10 bg-white/70 px-3 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:hidden dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+            >
+              <FiverrIcon className="h-4 w-auto shrink-0" />
+              <span>Hire Me</span>
+            </a>
+            <button
+              type="button"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded border border-ink/10 bg-white/70 text-ink transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus-visible:ring-offset-[#09090B] md:hidden"
+            >
+              <span className="sr-only">
+                {isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              </span>
+              <span className="relative block h-3.5 w-4">
+                <span
+                  className={[
+                    'absolute left-0 top-0 h-0.5 w-4 rounded-full bg-current transition-transform duration-200 ease-out',
+                    isMobileMenuOpen ? 'translate-y-[6px] rotate-45' : '',
+                  ].join(' ')}
+                />
+                <span
+                  className={[
+                    'absolute left-0 top-[6px] h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 ease-out',
+                    isMobileMenuOpen ? 'opacity-0' : 'opacity-100',
+                  ].join(' ')}
+                />
+                <span
+                  className={[
+                    'absolute left-0 top-3 h-0.5 w-4 rounded-full bg-current transition-transform duration-200 ease-out',
+                    isMobileMenuOpen ? '-translate-y-[6px] -rotate-45' : '',
+                  ].join(' ')}
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {isMobileMenuOpen ? (
+          <div
+            id="mobile-navigation"
+            className="absolute inset-x-4 top-[calc(100%+0.75rem)] rounded-2xl border border-ink/10 bg-sand p-4 shadow-[0_18px_48px_rgba(13,27,30,0.14)] dark:border-white/10 dark:bg-[#121316] md:hidden"
+          >
+            <nav className="flex flex-col gap-1 text-sm text-ink dark:text-white">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleSectionClick}
+                  className="rounded-xl px-3 py-3 font-medium transition-colors hover:bg-ink/[0.04] dark:hover:bg-white/5"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="my-3 border-t border-ink/10 dark:border-white/10" />
+
+            <a
+              href="#contact"
+              onClick={handleSectionClick}
+              className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-ink/10 bg-white/80 px-4 text-sm font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+            >
+              Let&apos;s Talk
+            </a>
+
+            <a
+              href={contact.fiverrUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Hire me on Fiverr"
+              className="mt-2 hidden h-10 w-full items-center justify-center gap-2 rounded-xl border border-ink/10 bg-white/80 px-4 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               <FiverrIcon className="h-4 w-auto shrink-0" />
               <span>Hire Me</span>
             </a>
           </div>
-        </div>
+        ) : null}
       </Container>
     </header>
   );
