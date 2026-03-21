@@ -121,6 +121,13 @@ img {
   display: inline-flex;
   align-items: center;
   min-width: 15ch;
+  --brand-caret-color: rgba(13, 27, 30, 0.52);
+  --brand-caret-color-strong: rgba(13, 27, 30, 0.72);
+}
+
+.dark .brand-link {
+  --brand-caret-color: rgba(255, 255, 255, 0.5);
+  --brand-caret-color-strong: rgba(255, 255, 255, 0.62);
 }
 
 .brand-text {
@@ -134,7 +141,7 @@ img {
   max-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  border-right: 1px solid rgba(255, 255, 255, 0.48);
+  border-right: 1px solid var(--brand-caret-color);
   transition:
     max-width 560ms steps(8, end),
     border-color 140ms ease;
@@ -146,7 +153,7 @@ img {
   .brand-link:hover .brand-suffix,
   .brand-link:focus-visible .brand-suffix {
     max-width: 8ch;
-    border-right-color: rgba(255, 255, 255, 0.62);
+    border-right-color: var(--brand-caret-color-strong);
   }
 }
 
@@ -166,7 +173,7 @@ img {
 @keyframes brand-caret-blink {
   0%,
   45% {
-    border-right-color: rgba(255, 255, 255, 0.5);
+    border-right-color: var(--brand-caret-color);
   }
 
   46%,
