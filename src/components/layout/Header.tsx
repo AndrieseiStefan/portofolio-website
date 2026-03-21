@@ -79,12 +79,18 @@ export function Header() {
     event.preventDefault();
 
     const isContactSection = href === '#contact';
+
+    if (isContactSection) {
+      window.history.replaceState(null, '', href);
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      return;
+    }
+
     const headerOffset = window.innerWidth < 1024 ? 52 : 64;
-    const sectionContentOffset = isContactSection
-      ? headerOffset
-      : window.innerWidth < 1024
-        ? 88
-        : 0;
+    const sectionContentOffset = window.innerWidth < 1024 ? 88 : 0;
     const top =
       target.getBoundingClientRect().top + window.scrollY - headerOffset + sectionContentOffset;
 
