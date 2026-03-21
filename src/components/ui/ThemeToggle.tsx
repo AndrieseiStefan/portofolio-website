@@ -35,8 +35,8 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
       <span className="absolute inset-[4px]">
         <span
           className={[
-            'absolute inset-y-0 left-0 w-[33px] transition-transform duration-300 ease-out',
-            isDark ? 'translate-x-[39px]' : 'translate-x-[1px]',
+            'absolute inset-y-0 left-0 w-8 transition-transform duration-300 ease-out',
+            isDark ? 'translate-x-[41px]' : 'translate-x-[3px]',
           ].join(' ')}
         >
           <span className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-[#0070F3] to-[#2f83ff] shadow-[0_8px_22px_rgba(0,112,243,0.32)]" />
@@ -82,7 +82,7 @@ function MoonIcon({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
       <path
-        d="M18.5 14.8A6.8 6.8 0 0 1 9.2 5.5a7.8 7.8 0 1 0 9.3 9.3Z"
+        d="M14.6 3.85c-3.95 0-7.15 3.2-7.15 7.15 0 3.95 3.2 7.15 7.15 7.15 1.72 0 3.29-.61 4.51-1.62a.7.7 0 0 0-.32-1.22 5.8 5.8 0 0 1-4.64-5.69c0-1.84.86-3.48 2.19-4.54a.7.7 0 0 0-.42-1.23H14.6Z"
         fill="currentColor"
       />
     </svg>
