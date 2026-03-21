@@ -37,8 +37,8 @@ export function Header() {
   return (
     <header
       className={[
-        'fixed inset-x-0 top-0 z-[100] border-b backdrop-blur-md',
-        isDark ? 'border-white/5 bg-[#09090B]/92' : 'border-ink/10 bg-sand/90',
+        'site-header fixed inset-x-0 top-0 z-[100] border-b backdrop-blur-md',
+        isDark ? 'border-white/5 bg-[#09090B]' : 'border-ink/10 bg-sand',
       ].join(' ')}
     >
       <Container className="h-16">

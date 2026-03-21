@@ -82,6 +82,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       });
     });
 
+    document.documentElement.dataset.themeTransition = 'active';
+
     transition.ready
       .then(() => {
         const endRadius = getMaxRadius(origin.x, origin.y);
@@ -102,6 +104,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       })
       .catch(() => {
         setThemeState(nextTheme);
+      })
+      .finally(() => {
+        delete document.documentElement.dataset.themeTransition;
       });
   };
 
