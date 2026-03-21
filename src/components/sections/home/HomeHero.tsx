@@ -22,14 +22,9 @@ export function HomeHero({
 
     event.preventDefault();
 
-    const headerOffset = window.innerWidth < 1024 ? 52 : 64;
-    const sectionContentOffset = headerOffset;
-    const top =
-      target.getBoundingClientRect().top + window.scrollY - headerOffset + sectionContentOffset;
-
     window.history.replaceState(null, '', '#contact');
     window.scrollTo({
-      top: Math.max(0, top),
+      top: Math.max(0, target.offsetTop),
       behavior: 'smooth',
     });
   };
