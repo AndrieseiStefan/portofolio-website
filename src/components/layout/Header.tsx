@@ -81,10 +81,14 @@ export function Header() {
     const isContactSection = href === '#contact';
 
     if (isContactSection) {
+      const currentViewportHeight = window.visualViewport?.height ?? window.innerHeight;
+      const sectionHeight = target.getBoundingClientRect().height;
+      const centeringOffset = Math.max(0, sectionHeight - currentViewportHeight) / 2;
+
       window.history.replaceState(null, '', href);
-      target.scrollIntoView({
+      window.scrollTo({
+        top: Math.max(0, target.offsetTop + centeringOffset),
         behavior: 'smooth',
-        block: 'start',
       });
       return;
     }
