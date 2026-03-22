@@ -5,7 +5,7 @@ export function HomeContact() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden border-t border-ink/12 py-24 dark:border-white/5 lg:py-32"
+      className="relative flex min-h-[100lvh] items-center overflow-hidden border-t border-ink/12 py-24 dark:border-white/5 lg:py-32"
     >
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-[#0070F3]/5 dark:to-[#0070F3]/5" />
       <Container>
