@@ -50,11 +50,11 @@ export function HomeAbout() {
             Trusted by teams and collaborators
           </h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <article className="relative rounded-xl border border-ink/12 bg-[#f4ede3] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
-              <p className="relative z-10 mb-6 italic text-ink dark:text-[#FAFAFA]">
+            <article className="relative flex h-full flex-col rounded-xl border border-ink/12 bg-[#f4ede3] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
+              <p className="relative z-10 mb-6 flex-1 italic text-ink dark:text-[#FAFAFA]">
                 "{testimonial.shortQuote}"
               </p>
-              <div className="flex items-center gap-3">
+              <div className="mt-auto flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/10 text-xs font-bold dark:bg-white/10">
                   OB
                 </div>
@@ -65,11 +65,11 @@ export function HomeAbout() {
               </div>
             </article>
 
-            <article className="relative rounded-xl border border-ink/12 bg-[#f4ede3] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
-              <p className="relative z-10 mb-6 italic text-ink dark:text-[#FAFAFA]">
+            <article className="relative flex h-full flex-col rounded-xl border border-ink/12 bg-[#f4ede3] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
+              <p className="relative z-10 mb-6 flex-1 italic text-ink dark:text-[#FAFAFA]">
                 "Clear communication, strong structure, and practical product feedback made collaboration smooth and effective."
               </p>
-              <div className="flex items-center gap-3">
+              <div className="mt-auto flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/10 text-xs font-bold dark:bg-white/10">
                   QA
                 </div>
