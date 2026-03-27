@@ -42,7 +42,7 @@ export function HomeHero({
 
       <Container className="relative z-10">
         <div className="reveal mx-auto max-w-4xl text-center">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/12 bg-[#f7f1e8] px-3 py-1 text-xs font-medium text-ink/70 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/12 bg-[#f7fbff] px-3 py-1 text-xs font-medium text-ink/70 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -74,7 +74,7 @@ export function HomeHero({
               href={contact.fiverrUrl}
               target="_blank"
               rel="noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-md border border-ink/10 bg-white/60 px-8 py-3.5 font-medium text-ink transition-colors hover:bg-white sm:w-auto dark:border-white/10 dark:bg-transparent dark:text-white dark:hover:bg-white/5"
+              className="flex w-full items-center justify-center gap-2 rounded-md border border-ink/10 bg-[#f7fbff] px-8 py-3.5 font-medium text-ink transition-colors hover:bg-white sm:w-auto dark:border-white/10 dark:bg-transparent dark:text-white dark:hover:bg-white/5"
             >
               View Fiverr Gigs <span className="text-ink/35 dark:text-zinc-500">↗</span>
             </a>

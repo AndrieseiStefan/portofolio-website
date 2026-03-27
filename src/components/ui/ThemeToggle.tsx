@@ -27,7 +27,7 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
       aria-label="Toggle dark mode"
       aria-pressed={isDark}
       className={[
-        'group relative inline-flex items-center rounded-full border border-ink/10 bg-white/80 p-1 text-ink shadow-sm backdrop-blur-md transition hover:border-[#0070F3]/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/[0.06] dark:text-white dark:hover:border-[#0070F3]/45 dark:hover:bg-white/[0.08] dark:focus-visible:ring-offset-[#0d1416]',
+        'group relative inline-flex items-center rounded-full border border-ink/20 bg-white/80 p-1 text-ink shadow-sm backdrop-blur-md transition hover:border-[#0070F3]/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/[0.06] dark:text-white dark:hover:border-[#0070F3]/45 dark:hover:bg-white/[0.08] dark:focus-visible:ring-offset-[#0d1416]',
         compact ? 'h-10 w-[84px]' : 'h-10 w-[84px]',
       ].join(' ')}
     >

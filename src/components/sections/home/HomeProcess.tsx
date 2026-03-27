@@ -20,7 +20,7 @@ const processSteps = [
 
 export function HomeProcess() {
   return (
-    <section id="process" className="scroll-mt-16 border-b border-ink/10 py-32 dark:border-white/5">
+    <section id="process" className="scroll-mt-16 border-b border-ink/20 py-32 dark:border-white/5">
       <Container>
         <div className="reveal mb-20 text-center">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">
@@ -32,7 +32,7 @@ export function HomeProcess() {
         </div>
 
         <div className="reveal relative grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="absolute left-[10%] right-[10%] top-6 hidden h-px bg-gradient-to-r from-transparent via-ink/15 to-transparent dark:via-white/10 md:block" />
+          <div className="absolute left-[10%] right-[10%] top-6 hidden h-px bg-gradient-to-r from-transparent via-ink/28 to-transparent dark:via-white/10 md:block" />
           {processSteps.map((item, index) => (
             <div key={item.step} className="relative text-center">
               <div

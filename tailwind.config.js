@@ -10,7 +10,7 @@ export default {
         sage: '#c9d9cf',
         pine: '#214a43',
         gold: '#c58d44',
-        sand: '#f7f1e8',
+        sand: '#f4f8fe',
       },
       boxShadow: {
         panel: '0 24px 80px rgba(13, 27, 30, 0.12)',

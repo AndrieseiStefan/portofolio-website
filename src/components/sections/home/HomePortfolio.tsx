@@ -14,7 +14,7 @@ export function HomePortfolio({
   onSelectCase: (index: number) => void;
 }) {
   return (
-    <section id="portfolio" className="scroll-mt-16 border-y border-ink/12 bg-[#f2eadf] py-32 dark:border-white/5 dark:bg-[#18181B]">
+    <section id="portfolio" className="scroll-mt-16 border-y border-ink/20 bg-[#dde7f5] py-32 dark:border-white/5 dark:bg-[#18181B]">
       <Container>
         <div className="mb-20 reveal text-center">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">Impact over output.</h2>
@@ -29,7 +29,7 @@ export function HomePortfolio({
               <button
                 type="button"
                 onClick={onPrevious}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/12 bg-[#f7f1e8] text-lg text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/12 bg-[#f7fbff] text-lg text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                 aria-label="Previous portfolio case"
               >
                 ←
@@ -37,7 +37,7 @@ export function HomePortfolio({
               <button
                 type="button"
                 onClick={onNext}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/12 bg-[#f7f1e8] text-lg text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/12 bg-[#f7fbff] text-lg text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                 aria-label="Next portfolio case"
               >
                 →
@@ -45,7 +45,7 @@ export function HomePortfolio({
             </div>
           </div>
 
-          <div className="portfolio-carousel-container rounded-[1.75rem] border border-ink/12 bg-[#f8f3eb] shadow-2xl dark:border-white/10 dark:bg-[#101013]">
+          <div className="portfolio-carousel-container rounded-[1.75rem] border border-ink/12 bg-[#f8fbff] shadow-2xl dark:border-white/10 dark:bg-[#101013]">
             <div
               className="portfolio-carousel-track"
               style={{ transform: `translateX(-${activeCaseIndex * 100}%)` }}

@@ -105,7 +105,7 @@ export function Header() {
     <header
       className={[
         'site-header fixed inset-x-0 top-0 z-[100] border-b',
-        isDark ? 'border-white/5 bg-[#09090B]' : 'border-ink/12 bg-[#f3ebdf]',
+        isDark ? 'border-white/5 bg-[#09090B]' : 'border-ink/20 bg-[#dde7f5]',
       ].join(' ')}
     >
       <Container className="h-16">
@@ -142,7 +142,7 @@ export function Header() {
             <a
               href="#contact"
               onClick={handleSectionClick}
-              className="hidden h-10 items-center rounded border border-ink/12 bg-[#f7f1e8] px-4 text-sm font-medium text-ink transition-colors hover:bg-white md:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="hidden h-10 items-center rounded border border-ink/20 bg-[#f7fbff] px-4 text-sm font-medium text-ink transition-colors hover:bg-white md:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               Let&apos;s Talk
             </a>
@@ -151,7 +151,7 @@ export function Header() {
               target="_blank"
               rel="noreferrer"
               aria-label="Hire me on Fiverr"
-              className="inline-flex h-10 items-center gap-2 rounded border border-ink/12 bg-[#f7f1e8] px-3 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:hidden dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="inline-flex h-10 items-center gap-2 rounded border border-ink/20 bg-[#f7fbff] px-3 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:hidden dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               <FiverrIcon className="h-4 w-auto shrink-0" />
               <span>Hire Me</span>
@@ -163,7 +163,7 @@ export function Header() {
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation"
               onClick={() => setIsMobileMenuOpen((open) => !open)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded border border-ink/12 bg-[#f7f1e8] text-ink transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus-visible:ring-offset-[#09090B] md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded border border-ink/20 bg-[#f7fbff] text-ink transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070F3] focus-visible:ring-offset-2 focus-visible:ring-offset-sand dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus-visible:ring-offset-[#09090B] md:hidden"
             >
               <span className="sr-only">
                 {isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -196,7 +196,7 @@ export function Header() {
           <div
             id="mobile-navigation"
             ref={mobileMenuRef}
-            className="absolute inset-x-4 top-[calc(100%+0.75rem)] rounded-2xl border border-ink/12 bg-[#f3ebdf] p-4 shadow-[0_18px_48px_rgba(13,27,30,0.14)] dark:border-white/10 dark:bg-[#121316] md:hidden"
+            className="absolute inset-x-4 top-[calc(100%+0.75rem)] rounded-2xl border border-ink/20 bg-[#dde7f5] p-4 shadow-[0_18px_48px_rgba(13,27,30,0.14)] dark:border-white/10 dark:bg-[#121316] md:hidden"
           >
             <nav className="flex flex-col gap-1 text-sm text-ink dark:text-white">
               {navItems.map((item) => (
@@ -211,12 +211,12 @@ export function Header() {
               ))}
             </nav>
 
-            <div className="my-3 border-t border-ink/12 dark:border-white/10" />
+            <div className="my-3 border-t border-ink/30 dark:border-white/10" />
 
             <a
               href="#contact"
               onClick={handleSectionClick}
-              className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-ink/12 bg-[#f7f1e8] px-4 text-sm font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-ink/20 bg-[#f7fbff] px-4 text-sm font-medium text-ink transition-colors hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               Let&apos;s Talk
             </a>
@@ -226,7 +226,7 @@ export function Header() {
               target="_blank"
               rel="noreferrer"
               aria-label="Hire me on Fiverr"
-              className="mt-2 hidden h-10 w-full items-center justify-center gap-2 rounded-xl border border-ink/12 bg-[#f7f1e8] px-4 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="mt-2 hidden h-10 w-full items-center justify-center gap-2 rounded-xl border border-ink/20 bg-[#f7fbff] px-4 text-sm font-medium text-ink transition-colors hover:bg-white max-[349px]:inline-flex dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               <FiverrIcon className="h-4 w-auto shrink-0" />
               <span>Hire Me</span>
