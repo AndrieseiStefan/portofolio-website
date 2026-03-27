@@ -17,7 +17,7 @@ export function HomeAbout() {
   return (
     <section
       id="about"
-      className="scroll-mt-16 border-t border-ink/12 bg-[#f1e8dc] py-32 dark:border-white/5 dark:bg-[#101013]"
+      className="scroll-mt-16 border-t border-ink/20 bg-[#dde7f5] py-32 dark:border-white/5 dark:bg-[#101013]"
     >
       <Container>
         <div className="reveal mb-32 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
@@ -33,7 +33,7 @@ export function HomeAbout() {
           </div>
 
           <div className="order-1 mx-auto w-full max-w-[24rem] lg:order-1 lg:max-w-none">
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-ink/12 bg-[#f7f1e8] shadow-[0_14px_34px_rgba(13,27,30,0.06)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-ink/12 bg-[#f7fbff] shadow-[0_14px_34px_rgba(13,27,30,0.06)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-sand/60 to-transparent opacity-70 dark:from-[#09090B] dark:opacity-60" />
               <div className="relative z-0 flex h-full items-center justify-center">
                 <ProfileAvatar sizeClassName="h-44 w-44 sm:h-52 sm:w-52 lg:h-56 lg:w-56 xl:h-64 xl:w-64" />
@@ -50,7 +50,7 @@ export function HomeAbout() {
             Trusted by teams and collaborators
           </h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <article className="relative flex h-full flex-col rounded-xl border border-ink/12 bg-[#f4ede3] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
+            <article className="relative flex h-full flex-col rounded-xl border border-ink/12 bg-[#f3f8ff] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
               <p className="relative z-10 mb-6 flex-1 italic text-ink dark:text-[#FAFAFA]">
                 "{testimonial.shortQuote}"
               </p>
@@ -65,7 +65,7 @@ export function HomeAbout() {
               </div>
             </article>
 
-            <article className="relative flex h-full flex-col rounded-xl border border-ink/12 bg-[#f4ede3] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
+            <article className="relative flex h-full flex-col rounded-xl border border-ink/12 bg-[#f3f8ff] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.08)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none">
               <p className="relative z-10 mb-6 flex-1 italic text-ink dark:text-[#FAFAFA]">
                 "Clear communication, strong structure, and practical product feedback made collaboration smooth and effective."
               </p>

@@ -5,7 +5,7 @@ const featuredServices = services.slice(0, 3);
 
 export function HomeServices() {
   return (
-    <section id="services" className="scroll-mt-16 border-t border-ink/10 py-32 dark:border-white/5">
+    <section id="services" className="scroll-mt-16 border-t border-ink/20 py-32 dark:border-white/5">
       <Container>
         <div className="reveal mb-20 text-center">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">Quality beyond the checklist.</h2>
@@ -18,10 +18,10 @@ export function HomeServices() {
           {featuredServices.map((service, index) => (
             <article
               key={service.title}
-              className="service-card group relative overflow-hidden rounded-xl border border-ink/12 bg-[#f7f1e8] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.06)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none"
+              className="service-card group relative overflow-hidden rounded-xl border border-ink/12 bg-[#f7fbff] p-8 shadow-[0_14px_34px_rgba(13,27,30,0.06)] dark:border-white/5 dark:bg-[#18181B] dark:shadow-none"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-ink/12 bg-white text-2xl text-[#0070F3] dark:border-white/10 dark:bg-white/5">
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-ink/12 bg-[#fbfdff] text-2xl text-[#0070F3] dark:border-white/10 dark:bg-white/5">
                 {index === 0 ? '◎' : index === 1 ? '◈' : '✦'}
               </div>
               <h3 className="mb-3 text-xl font-semibold text-ink dark:text-[#FAFAFA]">{service.title}</h3>
@@ -32,7 +32,7 @@ export function HomeServices() {
 
         <div className="reveal relative mx-auto mt-16 max-w-3xl">
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0070F3]/20 to-indigo-500/20 blur-3xl opacity-50" />
-          <div className="relative rotate-2 overflow-hidden rounded-xl border border-ink/12 bg-[#f8f3eb] p-6 shadow-2xl transition-transform duration-500 hover:rotate-0 dark:border-white/10 dark:bg-[#09090B]">
+          <div className="relative rotate-2 overflow-hidden rounded-xl border border-ink/12 bg-[#f8fbff] p-6 shadow-2xl transition-transform duration-500 hover:rotate-0 dark:border-white/10 dark:bg-[#09090B]">
               <div className="mb-6 flex items-center gap-2 border-b border-ink/12 pb-4 dark:border-white/5">
               <span className="h-3 w-3 rounded-full bg-red-500/80" />
               <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
